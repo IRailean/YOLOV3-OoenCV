@@ -10,8 +10,8 @@ import time
 
 labels = open('yolo-model/coco.names').read().strip().split('\n')
 
-weights = 'yolo-model/yolov3.weights'
-config = 'yolo-model/yolov3.cfg'
+weights = 'yolo-model/yolov3-tiny.weights'
+config = 'yolo-model/yolov3-tiny.cfg'
 
 net = cv2.dnn.readNet(config, weights)
 
