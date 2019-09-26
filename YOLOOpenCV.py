@@ -1,17 +1,27 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import cv2
 import numpy as np
 import time
+import argparse
+import os
 
-labels = open('yolo-model/coco.names').read().strip().split('\n')
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--input", required=False, default="/videos/car.mp4",
+    help="path to input video")
+ap.add_argument("-o", "--output", required=False, default="",
+    help="path to output video")
+ap.add_argument("-y", "--yolo", required=True,
+    help="base path to YOLO directory")
+ap.add_argument("-c", "--confidence", type=float, default=0.5,
+    help="minimum probability to filter weak detections")
+ap.add_argument("-t", "--threshold", type=float, default=0.3,
+    help="threshold when applyong non-maxima suppression")
+args = vars(ap.parse_args())
 
-weights = 'yolo-model/yolov3-tiny.weights'
-config = 'yolo-model/yolov3-tiny.cfg'
+labels = open(os.path.sep.join([args["yolo"], "coco.names"])).read().strip().split('\n')
+
+weights = os.path.sep.join([args["yolo"], "yolov3-tiny.weights"])
+config = os.path.sep.join([args["yolo"], "yolov3-tiny.cfg"])
 
 net = cv2.dnn.readNet(config, weights)
 
@@ -49,7 +59,7 @@ while(vc.isOpened()):
     confidences = []
     IDs = []
 
-    confidence_threshold = 0.5
+    confidence_threshold = args['confidence']
     
     # For each output save object prediction and box if confidence > threshold
     for output in layer_outputs:
@@ -72,7 +82,7 @@ while(vc.isOpened()):
                 IDs.append(ID)
 
     # Set non max suppresion threshold
-    nms_threshold = 0.7
+    nms_threshold = args['threshold']
     
     # Run NMS to get only needed boxes
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, confidence_threshold, nms_threshold)
@@ -116,10 +126,3 @@ vc.release()
 cv2.destroyAllWindows()
 
 print("end")
-
-
-# In[ ]:
-
-
-
-
