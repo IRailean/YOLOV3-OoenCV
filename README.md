@@ -18,4 +18,5 @@ python YOLOOpenCV.py --yolo yolo-model
 Here is the example. (Tiny yolov3 model is used)  
 You can download other yolo models from [here](https://pjreddie.com/darknet/yolo/)
 
-<img src ="https://im.ezgif.com/tmp/ezgif-1-8d170aba5d95.gif" width="600" height="400"/>
+[Click here](https://im2.ezgif.com/tmp/ezgif-2-3ba7eb0226a7.gif) if image is not presented
+<img src ="https://im2.ezgif.com/tmp/ezgif-2-3ba7eb0226a7.gif" width="600" height="400"/>
