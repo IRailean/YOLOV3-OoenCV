@@ -1,4 +1,5 @@
 # YOLOV3-OpenCV
+Big thanks to Adrian Rosebrock for the [tutorial](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)  
 Object detection with Yolov3 using OpenCV
 
 ## Parameters
